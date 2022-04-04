@@ -1,7 +1,6 @@
 # New SSL
 
-cd tls/
-chmod -R 777 ca/ elasticsearch/ kibana/ ../tls/
+cd tls/  && chmod -R 777 ca/ ../tls/
 
 # CA
 docker run -it \
@@ -21,8 +20,7 @@ docker run -it \
     --in tls/instances.yml \
     --out tls/certificate-bundle.zip
 
-unzip certificate-bundle.zip
-rm certificate-bundle.zip
+unzip certificate-bundle.zip && rm certificate-bundle.zip
 
 # Cert 2
 docker run -it \
@@ -31,8 +29,7 @@ docker run -it \
   bin/elasticsearch-certutil http
 #Path: tls/elasticsearch-ssl-http.zip
 
-unzip elasticsearch-ssl-http.zip
-rm elasticsearch-ssl-http.zip
+unzip elasticsearch-ssl-http.zip && rm elasticsearch-ssl-http.zip
 
 
 
