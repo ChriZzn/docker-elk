@@ -20,4 +20,6 @@ elasticsearch.password: ${KIBANA_SYSTEM_PASSWORD}
 ## Communications between Kibana and Elasticsearch
 ## see https://www.elastic.co/guide/en/kibana/current/configuring-tls.html#configuring-tls-kib-es
 #
+xpack.security.encryptionKey: ${KIBANA_ENCRYPTION_KEY}
+
 elasticsearch.ssl.certificateAuthorities: [ "config/elasticsearch-ca.pem" ]
