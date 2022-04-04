@@ -10,9 +10,12 @@ docker run -it -v ${PWD}:/usr/share/elasticsearch/tls docker.elastic.co/elastics
 
 unzip certificate-bundle.zip && rm certificate-bundle.zip
 
-# Cert 2
+# Cert 2```
 docker run -it -v ${PWD}:/usr/share/elasticsearch/tls docker.elastic.co/elasticsearch/elasticsearch:8.1.2 bin/elasticsearch-certutil http
-#Path: tls/elasticsearch-ssl-http.zip
+
+#CA-IN-Path: /usr/share/elasticsearch/tls/ca/ca.p12
+#Out-Path: tls/elasticsearch-ssl-http.zip
+```
 
 unzip elasticsearch-ssl-http.zip && rm elasticsearch-ssl-http.zip
 
