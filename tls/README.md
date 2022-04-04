@@ -1,3 +1,41 @@
+# New SSL
+
+cd tls/
+chmod -R 777 ca/ elasticsearch/ kibana/ ../tls/
+
+# CA
+docker run -it \
+  -v ${PWD}:/usr/share/elasticsearch/tls \
+  docker.elastic.co/elasticsearch/elasticsearch:8.1.0 \
+  bin/elasticsearch-certutil ca \
+    --days 3650 \
+    --out tls/ca/ca.p12
+
+# Certificates
+docker run -it \
+  -v ${PWD}:/usr/share/elasticsearch/tls \
+  docker.elastic.co/elasticsearch/elasticsearch:8.1.0 \
+  bin/elasticsearch-certutil cert \
+    --days 3650 \
+    --ca tls/ca/ca.p12 \
+    --in tls/instances.yml \
+    --out tls/certificate-bundle.zip
+
+unzip certificate-bundle.zip
+rm certificate-bundle.zip
+
+# Cert 2
+docker run -it \
+  -v ${PWD}:/usr/share/elasticsearch/tls \
+  docker.elastic.co/elasticsearch/elasticsearch:8.1.0 \
+  bin/elasticsearch-certutil http
+#Path: tls/elasticsearch-ssl-http.zip
+
+unzip elasticsearch-ssl-http.zip
+rm elasticsearch-ssl-http.zip
+
+
+
 # TLS certificates
 
 This directory contains pre-generated X.509 certificates and private keys which are used to secure the communications
