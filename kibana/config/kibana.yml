@@ -23,3 +23,9 @@ elasticsearch.password: ${KIBANA_SYSTEM_PASSWORD}
 xpack.security.encryptionKey: ${KIBANA_ENCRYPTION_KEY}
 
 elasticsearch.ssl.certificateAuthorities: [ "config/elasticsearch-ca.pem" ]
+
+#Encrpytion:
+#  docker exec -ti docker-elk_kibana_1 bin/kibana-encryption-keys generate
+xpack.encryptedSavedObjects.encryptionKey: 12341234123412341234123412341234
+xpack.reporting.encryptionKey: 12341234123412341234123412341234
+
